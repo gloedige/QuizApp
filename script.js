@@ -61,3 +61,29 @@ function showAnswer(question){
     document.getElementById('answer_3').innerHTML = question.answer_3;
     document.getElementById('answer_4').innerHTML = question.answer_4;
 }
+
+function answer(selection){
+    // let question = questions[currentQuestion];
+    let questionObj = getCurrentQuestionObj();
+    let num_answer = selection.replace("answer_", "");
+    if (questionObj.right_answer == num_answer){
+        console.log("Antwort ist richtig!");
+        document.getElementById(selection).parentNode.classList.add("bg-success");
+    }
+    else{
+        console.log("Antwort leider falsch");
+        document.getElementById(selection).parentNode.classList.add("bg-danger");
+    }
+    
+}
+
+function getCurrentQuestionObj(){
+    let element;
+    let currentQuestion = document.getElementById('questiontext').innerText;
+    Object.keys(questions).forEach(function(key){
+        if (questions[key].question == currentQuestion){
+            element = questions[key];
+        };
+    })
+    return element
+}
