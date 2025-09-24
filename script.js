@@ -74,6 +74,7 @@ function answer(selection){
         document.getElementById(selection).parentNode.classList.add("bg-danger");
         document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
     }
+    enableNextButton();
     
 }
 
@@ -91,4 +92,8 @@ function getCurrentQuestionObj(){
 function getIdOfRightAnswer(questionObj){
     let id = "answer_" + questionObj.right_answer;
     return id
+}
+
+function enableNextButton(){
+    document.getElementById('next-button').disabled = false;
 }
