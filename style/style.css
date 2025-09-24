@@ -1,0 +1,11 @@
+body{
+    background-color: #FEFAEF !important;
+    min-height: 100vh;
+}
+.container{
+    min-height: 100vh;
+    background-color: #FEFAEF !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
