@@ -1,0 +1,63 @@
+let questions = [
+    {
+        "question": "Wer hat HTML erfunden?",
+        "answer_1": "Robbie Williams",
+        "answer_2": "Lady Gaga",
+        "answer_3": "Tim Berners-Lee",
+        "answer_4": "Justin Biber",
+        "right_answer": 3
+    },
+    {
+        "question": "Wie bindet man eine Webseite in eine Webseite ein?",
+        "answer_1": "Per Drag and Drop",
+        "answer_2": "Mit iframe",
+        "answer_3": "Mit Links",
+        "answer_4": "Gar nicht!",
+        "right_answer": 2
+    },
+    {
+        "question": "Welche Programmiersprache läuft in fast jedem Browser?",
+        "answer_1": "Java",
+        "answer_2": "C++",
+        "answer_3": "JavaScript",
+        "answer_4": "Python",
+        "right_answer": 3
+    },
+    {
+        "question": "Welcher HTML-Tag wird für Überschriften verwendet?",
+        "answer_1": "<p>",
+        "answer_2": "<a>",
+        "answer_3": "<div>",
+        "answer_4": "<h1>",
+        "right_answer": 4
+    },
+    {
+        "question": "Was bedeutet CSS?",
+        "answer_1": "Computer Style Sheets",
+        "answer_2": "Creative Style System",
+        "answer_3": "Cascading Style Sheets",
+        "answer_4": "Colorful Style Sentences",
+        "right_answer": 3
+    }
+]
+
+let currentQuestion = 0;
+
+function init(){
+    let numQuestionsRef = document.getElementById('number_questions');
+    numQuestionsRef.innerHTML = questions.length;
+    showQuestion();
+}
+
+function showQuestion(){
+    let question = questions[currentQuestion];
+    document.getElementById('questiontext').innerHTML = question.question;
+    showAnswer(question);
+}
+
+function showAnswer(question){
+    document.getElementById('answer_1').innerHTML = question.answer_1;
+    document.getElementById('answer_2').innerHTML = question.answer_2;
+    document.getElementById('answer_3').innerHTML = question.answer_3;
+    document.getElementById('answer_4').innerHTML = question.answer_4;
+}
