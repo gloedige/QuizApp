@@ -68,11 +68,9 @@ function answer(selection){
     let num_answer = selection.replace("answer_", "");
     let idOfRightAnswer = getIdOfRightAnswer(questionObj);
     if (questionObj.right_answer == num_answer){
-        console.log("Antwort ist richtig!");
         document.getElementById(selection).parentNode.classList.add("bg-success");
     }
     else{
-        console.log("Antwort leider falsch");
         document.getElementById(selection).parentNode.classList.add("bg-danger");
         document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
     }
@@ -92,6 +90,5 @@ function getCurrentQuestionObj(){
 
 function getIdOfRightAnswer(questionObj){
     let id = "answer_" + questionObj.right_answer;
-    console.log(id);
     return id
 }
