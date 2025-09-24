@@ -66,6 +66,7 @@ function answer(selection){
     // let question = questions[currentQuestion];
     let questionObj = getCurrentQuestionObj();
     let num_answer = selection.replace("answer_", "");
+    let idOfRightAnswer = getIdOfRightAnswer(questionObj);
     if (questionObj.right_answer == num_answer){
         console.log("Antwort ist richtig!");
         document.getElementById(selection).parentNode.classList.add("bg-success");
@@ -73,6 +74,7 @@ function answer(selection){
     else{
         console.log("Antwort leider falsch");
         document.getElementById(selection).parentNode.classList.add("bg-danger");
+        document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
     }
     
 }
@@ -86,4 +88,10 @@ function getCurrentQuestionObj(){
         };
     })
     return element
+}
+
+function getIdOfRightAnswer(questionObj){
+    let id = "answer_" + questionObj.right_answer;
+    console.log(id);
+    return id
 }
