@@ -18,3 +18,10 @@ body{
 .quiz-card{
     width: 30rem;
 }
+.quiz-answer-card:hover{
+    background-color: #0D6EFD;
+    cursor: pointer;
+}
+.bg-success, .bg-danger{
+    color: white;
+}
