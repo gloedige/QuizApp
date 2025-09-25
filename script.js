@@ -52,6 +52,7 @@ function init(){
     showQuestion();
     renderProgressBar();
     setNumberOfCurrentQuestion();
+    clearAllHighlightedCards()
 }
 
 function showQuestion(){
