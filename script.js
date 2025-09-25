@@ -127,7 +127,7 @@ function clearAllHighlightedCards(){
 }
 
 function checkMaxNumOfQuestions(){
-    if (questions.length == currentQuestion){
+    if (questions.length == currentQuestion+1){
         return true;
     }
     else{
