@@ -42,6 +42,7 @@ let questions = [
 ]
 
 let currentQuestion = 0;
+let counterOfRightQuestions = 0;
 
 function init(){
     let numQuestionsRef = document.getElementById('number_questions');
@@ -69,6 +70,7 @@ function answer(selection){
     let idOfRightAnswer = getIdOfRightAnswer(questionObj);
     if (questionObj.right_answer == num_answer){
         document.getElementById(selection).parentNode.classList.add("bg-success");
+        counterOfRightQuestions++;
     }
     else{
         document.getElementById(selection).parentNode.classList.add("bg-danger");
@@ -100,7 +102,11 @@ function enableNextButton(){
 
 function nextQuestion(){
     if (checkMaxNumOfQuestions()){
-        return
+        document.getElementById("question-body").style="display: none";
+        document.getElementById("end-screen").style=""
+        document.getElementById("end-screen-img").style=""
+        document.getElementById("quizapp_questionmark").style="display: none";
+        document.getElementById('number_correct_questions').innerHTML = counterOfRightQuestions;
     }
     else{
         currentQuestion++;

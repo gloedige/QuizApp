@@ -21,8 +21,17 @@
         <h1>QuizApp</h1>
         <div class="container">
             <div class="card quiz">
-                <img src="./assets/imgs/question-mark.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
+                <img src="./assets/imgs/question-mark.jpg" class="card-img-top" alt="..." id="quizapp_questionmark">
+                <img src="./assets/imgs/trophy.png" alt="trophy" id="end-screen-img" class="width-100" style="display: none;">
+
+                <div class="card-body width-100 text-center" id="end-screen" style="display: none;">
+                    <h1>Quiz beendet!</h1>
+                    <span class="result width-100 text-center">
+                        Du hast<b id="number_correct_questions"> XXX </b>von<b id="number_questions"> XXX </b>Fragen richtig beantwortet!
+                    </span>
+                </div>
+
+                <div class="card-body" id="question-body">
                     <h5 class="card-title" id="questiontext">Frage</h5>
                 
                     <div class="card quiz-answer-card mb-2" onclick="answer('answer_1')">

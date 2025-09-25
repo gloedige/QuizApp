@@ -25,3 +25,14 @@ body{
 .bg-success, .bg-danger{
     color: white !important;
 }
+.result{
+    display: flex;
+    justify-content: center;
+    gap: 4px
+}
+.width-100{
+    width: 100%;
+}
+.text-center{
+    text-align: center;
+}
