@@ -43,11 +43,15 @@ let questions = [
 
 let currentQuestion = 0;
 let counterOfRightQuestions = 0;
+let successAudio = new Audio('./assets/audio/success.mp3');
+let failureAudio = new Audio('./assets/audio/failure.mp3');
 
 function init(){
     let numQuestionsRef = document.getElementById('number_questions');
     numQuestionsRef.innerHTML = questions.length;
     showQuestion();
+    renderProgressBar();
+    setNumberOfCurrentQuestion();
 }
 
 function showQuestion(){
@@ -71,10 +75,12 @@ function answer(selection){
     if (questionObj.right_answer == num_answer){
         document.getElementById(selection).parentNode.classList.add("bg-success");
         counterOfRightQuestions++;
+        successAudio.play();
     }
     else{
         document.getElementById(selection).parentNode.classList.add("bg-danger");
         document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
+        failureAudio.play();
     }
     enableNextButton();
     
@@ -107,6 +113,7 @@ function nextQuestion(){
         document.getElementById("end-screen-img").style=""
         document.getElementById("quizapp_questionmark").style="display: none";
         document.getElementById('number_correct_questions').innerHTML = counterOfRightQuestions;
+        document.getElementById('progress-container').style="display: none";   
     }
     else{
         currentQuestion++;
@@ -114,6 +121,7 @@ function nextQuestion(){
         disableNextButton();
         clearAllHighlightedCards();
         setNumberOfCurrentQuestion();
+        renderProgressBar();
     }
 }
 
@@ -143,4 +151,25 @@ function checkMaxNumOfQuestions(){
 
 function setNumberOfCurrentQuestion(){
     document.getElementById('num_current_question').innerHTML = currentQuestion+1;
+}
+
+function renderProgressBar(){
+    document.getElementById('progress-bar').innerHTML = calcPercentage()+"%";
+    document.getElementById('progress-bar').style.width = calcPercentage()+"%";
+}
+
+function calcPercentage(){
+    let percentageOfCurrentQuestion = 100 * (currentQuestion + 1) / questions.length;
+    return percentageOfCurrentQuestion
+}
+
+function restartQuiz(){
+    currentQuestion = 0;
+    counterOfRightQuestions = 0;
+    document.getElementById("question-body").style="display: block";
+    document.getElementById("end-screen").style="display: none";
+    document.getElementById("end-screen-img").style="display: none"
+    document.getElementById("quizapp_questionmark").style="display: block";
+    document.getElementById('progress-container').style="display: block";   
+    init();
 }

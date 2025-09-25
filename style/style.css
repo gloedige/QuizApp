@@ -36,3 +36,9 @@ body{
 .text-center{
     text-align: center;
 }
+.end-screen{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
