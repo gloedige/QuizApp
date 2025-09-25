@@ -74,17 +74,25 @@ function answer(selection){
     let num_answer = selection.replace("answer_", "");
     let idOfRightAnswer = getIdOfRightAnswer(questionObj);
     if (questionObj.right_answer == num_answer){
-        document.getElementById(selection).parentNode.classList.add("bg-success");
-        counterOfRightQuestions++;
-        successAudio.play();
+        questionSuccessful(selection);
+        
     }
     else{
-        document.getElementById(selection).parentNode.classList.add("bg-danger");
-        document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
-        failureAudio.play();
+        questionNotSuccessful(selection, idOfRightAnswer);
     }
     enableNextButton();
-    
+}
+
+function questionSuccessful(selection){
+    document.getElementById(selection).parentNode.classList.add("bg-success");
+    counterOfRightQuestions++;
+    successAudio.play();
+}
+
+function questionNotSuccessful(selection, idOfRightAnswer){
+     document.getElementById(selection).parentNode.classList.add("bg-danger");
+    document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
+    failureAudio.play();
 }
 
 function getCurrentQuestionObj(){
@@ -109,21 +117,37 @@ function enableNextButton(){
 
 function nextQuestion(){
     if (checkMaxNumOfQuestions()){
-        document.getElementById("question-body").style="display: none";
-        document.getElementById("end-screen").style=""
-        document.getElementById("end-screen-img").style=""
-        document.getElementById("quizapp_questionmark").style="display: none";
-        document.getElementById('number_correct_questions').innerHTML = counterOfRightQuestions;
-        document.getElementById('progress-container').style="display: none";   
+        showEndScreen();
+        hideQuestionBody();
+        renderNumberOfCorrectQuestions();
     }
     else{
-        currentQuestion++;
+        incrementVarCurrentQuestion();
         showQuestion();
         disableNextButton();
         clearAllHighlightedCards();
         setNumberOfCurrentQuestion();
         renderProgressBar();
     }
+}
+
+function showEndScreen(){
+    document.getElementById("end-screen").style=""
+    document.getElementById("end-screen-img").style=""
+}
+
+function hideQuestionBody(){
+    document.getElementById("question-body").style="display: none";
+    document.getElementById('progress-container').style="display: none";   
+    document.getElementById("quizapp_questionmark").style="display: none";
+}
+
+function renderNumberOfCorrectQuestions(){
+  document.getElementById('number_correct_questions').innerHTML = counterOfRightQuestions;
+}
+
+function incrementVarCurrentQuestion(){
+    currentQuestion++;
 }
 
 function disableNextButton(){
