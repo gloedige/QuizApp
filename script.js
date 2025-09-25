@@ -56,10 +56,10 @@ function showQuestion(){
 }
 
 function showAnswer(question){
-    document.getElementById('answer_1').innerHTML = question.answer_1;
-    document.getElementById('answer_2').innerHTML = question.answer_2;
-    document.getElementById('answer_3').innerHTML = question.answer_3;
-    document.getElementById('answer_4').innerHTML = question.answer_4;
+    document.getElementById('answer_1').textContent = question.answer_1;
+    document.getElementById('answer_2').textContent = question.answer_2;
+    document.getElementById('answer_3').textContent = question.answer_3;
+    document.getElementById('answer_4').textContent = question.answer_4;
 }
 
 function answer(selection){
@@ -96,4 +96,45 @@ function getIdOfRightAnswer(questionObj){
 
 function enableNextButton(){
     document.getElementById('next-button').disabled = false;
+}
+
+function nextQuestion(){
+    if (checkMaxNumOfQuestions()){
+        return
+    }
+    else{
+        currentQuestion++;
+        showQuestion();
+        disableNextButton();
+        clearAllHighlightedCards();
+        setNumberOfCurrentQuestion();
+    }
+}
+
+function disableNextButton(){
+    document.getElementById('next-button').disabled = true;
+}
+
+function clearAllHighlightedCards(){
+    document.getElementById('answer_1').parentElement.classList.remove("bg-success");
+    document.getElementById('answer_1').parentElement.classList.remove("bg-danger");
+    document.getElementById('answer_2').parentElement.classList.remove("bg-success");
+    document.getElementById('answer_2').parentElement.classList.remove("bg-danger");
+    document.getElementById('answer_3').parentElement.classList.remove("bg-success");
+    document.getElementById('answer_3').parentElement.classList.remove("bg-danger");
+    document.getElementById('answer_4').parentElement.classList.remove("bg-success");
+    document.getElementById('answer_4').parentElement.classList.remove("bg-danger");
+}
+
+function checkMaxNumOfQuestions(){
+    if (questions.length == currentQuestion){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function setNumberOfCurrentQuestion(){
+    document.getElementById('num_current_question').innerHTML = currentQuestion+1;
 }
